@@ -1,0 +1,19 @@
+---
+# marathon default variables
+
+marathon_username: admin
+marathon_password: passwd
+marathon_port: 8443
+marathon_protocol: https
+
+# htcondor default variables
+htcondor_schedd_ssh_port: 31042
+htcondor_config_condor_image: "cloudpg/dodas-htcondor"
+htcondor_initial_number_of_slaves: 0
+htcondor_cpu_x_wn: 1
+htcondor_ram_x_wn: 2000
+htcondor_docker_cpu_x_wn: 0.98
+htcondor_docker_ram_x_wn: 1999.98
+
+# Mandatory Variables
+#htcondor_config_schedd_ip: MANDATORY - NO DEFAULT AVAILABLE

@@ -1,0 +1,70 @@
+{
+    "id": "scheddtunnel",
+    "cmd": null,
+    "cpus": 0.9,
+    "mem": 256,
+    "disk": 0,
+    "instances": 1,
+    "constraints": [
+      [
+        "hostname",
+        "UNLIKE",
+        "{{htcondor_config_schedd_ip}}"
+      ]
+    ],
+    "acceptedResourceRoles": [
+      "*"
+    ],
+    "container": {
+      "type": "DOCKER",
+      "volumes": [],
+      "docker": {
+        "image": "cloudpg/dodas-htcondor",
+        "network": "BRIDGE",
+        "portMappings": [
+          {
+            "containerPort": {{htcondor_schedd_ssh_port}},
+            "hostPort": 0,
+            "servicePort": {{htcondor_schedd_ssh_port}},
+            "protocol": "tcp",
+            "name": "sshtunnel",
+            "labels": {}
+          }
+        ],
+        "privileged": true,
+        "parameters": [],
+        "forcePullImage": true
+      }
+    },
+    "env": {
+      "CONDOR_SCHEDD_SSH_PORT": "{{htcondor_schedd_ssh_port}}",
+      "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}"
+    },
+    "healthChecks": [
+      {
+        "gracePeriodSeconds": 300,
+        "intervalSeconds": 60,
+        "timeoutSeconds": 20,
+        "maxConsecutiveFailures": 3,
+        "delaySeconds": 15,
+        "command": {
+          "value": "dodas_check_condor_schedd_tunnel"
+        },
+        "protocol": "COMMAND"
+      }
+    ],
+    "labels": {
+      "HAPROXY_GROUP": "external"
+    },
+    "portDefinitions": [
+      {
+        "port": {{htcondor_schedd_ssh_port}},
+        "protocol": "tcp",
+        "name": "sshtunnel",
+        "labels": {}
+      }
+    ],
+    "args": [
+      "scheddtunnel"
+    ]
+  }

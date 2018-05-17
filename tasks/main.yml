@@ -1,0 +1,4 @@
+---
+
+- include: start-htcondor-apps.yml
+  when: (config_mode is defined) and (config_mode == "master")
