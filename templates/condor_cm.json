@@ -25,7 +25,8 @@
   ],
   "env": {
     "CONDOR_HOST": "ZOOKEEPER",
-    "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}"
+    "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
+    "LB_HOST_LIST": "{{ lb_peers }}"
   },
   "args": [
     "master"

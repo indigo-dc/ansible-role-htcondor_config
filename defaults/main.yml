@@ -17,3 +17,4 @@ htcondor_docker_ram_x_wn: 1999.98
 
 # Mandatory Variables
 #htcondor_config_schedd_ip: MANDATORY - NO DEFAULT AVAILABLE
+#lb_peers: MANDATORY - NO DEFAULT AVAILABLE
