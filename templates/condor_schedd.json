@@ -1,7 +1,7 @@
 {
   "id": "condorschedd",
-  "cpus": 2.4,
-  "mem": 3200.95,
+  "cpus": 0.9,
+  "mem": 999.5,
   "container": {
     "type": "DOCKER",
     "docker": {
