@@ -8,7 +8,7 @@ marathon_protocol: https
 
 # htcondor default variables
 htcondor_schedd_ssh_port: 31042
-htcondor_config_condor_image: "cloudpg/dodas-htcondor"
+htcondor_config_condor_image: "dodasts/htcondor"
 htcondor_initial_number_of_slaves: 0
 htcondor_cpu_x_wn: 1
 htcondor_ram_x_wn: 2000
