@@ -1,0 +1,107 @@
+---
+
+- name: ping marathon consul to check if it is ready
+  shell: "curl --silent -k -u {{marathon_username}}:{{marathon_password}} {{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/ping"
+  register: result_ping
+  until: result_ping.stdout.find("pong") != -1
+  retries: 20
+  delay: 30
+
+# - name: debug url
+#   debug:
+#     msg: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/condor_cm"
+
+# - name: user and passwd
+#   debug:
+#     msg: "{{marathon_username}}:{{marathon_password}}"
+
+# - name: debug template
+#   debug:
+#     msg: "{{ lookup('template', 'templates/condor_cm.json') }}"
+
+- name: start HTCondor Central Manager
+  run_once: true
+  uri:
+    url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/condorcm"
+    force_basic_auth: yes
+    user: "{{marathon_username}}"
+    password: "{{marathon_password}}"
+    validate_certs: no
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    body: "{{ lookup('template', 'templates/condor_cm.json') }}"
+    body_format: json
+    status_code: [200, 201]  # app created, deployment started
+    return_content: yes
+  retries: 10
+  delay: 20
+  changed_when: false
+  tags:
+    - htcondor
+
+- name: start HTCondor Schedd
+  run_once: true
+  uri:
+    url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/condorschedd"
+    force_basic_auth: yes
+    user: "{{marathon_username}}"
+    password: "{{marathon_password}}"
+    validate_certs: no
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    body: "{{ lookup('template', 'templates/condor_schedd.json') }}"
+    body_format: json
+    status_code: [200, 201]  # app created, deployment started
+    return_content: yes
+  retries: 10
+  delay: 20
+  changed_when: false
+  tags:
+    - htcondor
+
+- name: start HTCondor Schedd tunnel
+  run_once: true
+  uri:
+    url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/scheddtunnel"
+    force_basic_auth: yes
+    user: "{{marathon_username}}"
+    password: "{{marathon_password}}"
+    validate_certs: no
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    body: "{{ lookup('template', 'templates/scheddtunnel.json') }}"
+    body_format: json
+    status_code: [200, 201]  # app created, deployment started
+    return_content: yes
+  retries: 10
+  delay: 20
+  changed_when: false
+  tags:
+    - htcondor
+
+- name: start HTCondor WN
+  run_once: true
+  uri:
+    url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/condorwn"
+    force_basic_auth: yes
+    user: "{{marathon_username}}"
+    password: "{{marathon_password}}"
+    validate_certs: no
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    # Template has privileged because it can have access to host devices
+    # and it is in BRIDGE mode to have different hostname for
+    # condor nodes, otherwise they can't be recognized by master
+    body: "{{ lookup('template', 'templates/condor_wn.json') }}"
+    body_format: json
+    status_code: [200, 201, 409]  # app created, deployment started, already running deployment
+    return_content: yes
+  retries: 10
+  delay: 20
+  changed_when: false
+  tags:
+    - htcondor

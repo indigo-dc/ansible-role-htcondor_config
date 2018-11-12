@@ -1,0 +1,49 @@
+{
+  "id": "condorschedd",
+  "cpus": 0.9,
+  "mem": 999.5,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "{{htcondor_config_condor_image}}",
+      "forcePullImage": true,
+      "privileged": true,
+      "network": "HOST"
+    },
+    "volumes": [
+      {
+        "containerPath": "/home/uwdir",
+        "hostPath": "/tmp/uwdir",
+        "mode": "RW"
+      }
+    ]
+  },
+  "healthChecks": [
+    {
+      "command": {
+        "value": "dodas_check_ssh_server && dodas_check_cvmfs_folders && dodas_check_condor_master_ip"
+      },
+      "protocol": "COMMAND",
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "delaySeconds": 15
+    }
+  ],
+  "env": {
+    "CONDOR_HOST": "ZOOKEEPER",
+    "CONDOR_SCHEDD_SSH_PORT": "{{htcondor_schedd_ssh_port}}",
+    "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip}}",
+    "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
+    "HIGHPORT": "{{ high_port }}",
+    "LOWPORT": "{{ low_port }}"
+  },
+  "args": [
+    "schedd"
+  ],
+  "constraints": [
+    ["hostname", "UNIQUE"],
+    ["hostname", "LIKE", "{{htcondor_config_schedd_ip}}"]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "condorcm",
+  "cpus": 0.95,
+  "mem": 998.2,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "{{htcondor_config_condor_image}}",
+      "forcePullImage": true,
+      "network": "HOST"
+    }
+  },
+  "healthChecks": [
+    {
+      "command": {
+        "value": "dodas_check_condor_processes condor_negotiator condor_collector"
+      },
+      "protocol": "COMMAND",
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "delaySeconds": 15
+    }
+  ],
+  "env": {
+    "CONDOR_HOST": "ZOOKEEPER",
+    "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
+    "LB_HOST_LIST": "{{ lb_peers }}"
+  },
+  "args": [
+    "master"
+  ],
+  "constraints": [
+    ["hostname", "UNIQUE"],
+    ["hostname", "UNLIKE", "{{htcondor_config_schedd_ip}}"]
+  ]
+}
