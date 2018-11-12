@@ -18,26 +18,15 @@
       }
     ]
   },
-  "healthChecks": [
-    {
-      "command": {
-        "value": "dodas_check_ssh_server && dodas_check_cvmfs_folders && dodas_check_condor_master_ip"
-      },
-      "protocol": "COMMAND",
-      "gracePeriodSeconds": 300,
-      "intervalSeconds": 60,
-      "timeoutSeconds": 20,
-      "maxConsecutiveFailures": 3,
-      "delaySeconds": 15
-    }
-  ],
+  "healthChecks": [],
   "env": {
-    "CONDOR_HOST": "ZOOKEEPER",
+    "CONDOR_HOST": "{{ condor_host }}",
     "CONDOR_SCHEDD_SSH_PORT": "{{htcondor_schedd_ssh_port}}",
     "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip}}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
     "HIGHPORT": "{{ high_port }}",
-    "LOWPORT": "{{ low_port }}"
+    "LOWPORT": "{{ low_port }}",
+    "PROXY_CACHE": "{{ proxycache_host }}:{{config_proxycache_serviceport}}"
   },
   "args": [
     "schedd"
