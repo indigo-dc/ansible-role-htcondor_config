@@ -61,26 +61,6 @@
   tags:
     - htcondor
 
-- name: start HTCondor Schedd tunnel
-  run_once: true
-  uri:
-    url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/scheddtunnel"
-    force_basic_auth: yes
-    user: "{{marathon_username}}"
-    password: "{{marathon_password}}"
-    validate_certs: no
-    method: PUT
-    headers:
-      Content-Type: "application/json"
-    body: "{{ lookup('template', 'templates/scheddtunnel.json') }}"
-    body_format: json
-    status_code: [200, 201]  # app created, deployment started
-    return_content: yes
-  retries: 10
-  delay: 20
-  changed_when: false
-  tags:
-    - htcondor
 
 - name: start HTCondor WN
   run_once: true
