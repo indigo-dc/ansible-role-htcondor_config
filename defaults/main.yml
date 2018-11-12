@@ -15,6 +15,10 @@ htcondor_ram_x_wn: 2000
 htcondor_docker_cpu_x_wn: 0.98
 htcondor_docker_ram_x_wn: 1999.98
 
+high_port: 2048
+low_port: 1024
+ccb_address: "$(CONDOR_HOST)"
+
 # Mandatory Variables
 #htcondor_config_schedd_ip: MANDATORY - NO DEFAULT AVAILABLE
 #lb_peers: MANDATORY - NO DEFAULT AVAILABLE
