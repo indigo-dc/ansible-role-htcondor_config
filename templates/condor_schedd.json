@@ -21,7 +21,7 @@
   "healthChecks": [
     {
       "command": {
-        "value": "dodas_check_ssh_server && dodas_check_cvmfs_folders && dodas_check_condor_master_ip"
+        "value": "dodas_check_condor_master_ip"
       },
       "protocol": "COMMAND",
       "gracePeriodSeconds": 300,
