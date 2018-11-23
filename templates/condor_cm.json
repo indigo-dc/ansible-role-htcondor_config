@@ -9,11 +9,13 @@
       "forcePullImage": true,
       "network": "HOST"
     },      
-    "volumes": { 
+    "volumes": [
+      { 
         "containerPath": "/etc/condor/condormapfile",
         "hostPath": "/tmp/condormapfile",
         "mode": "RW"
       }
+    ]
   },
   "healthChecks": [
     {
