@@ -7,6 +7,31 @@
   retries: 20
   delay: 30
 
+- name: start proxy cache
+  run_once: true
+  uri:
+     url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/cmsproxycache"
+     user: "{{marathon_username}}"
+     password: "{{marathon_password}}"
+     validate_certs: "no"
+     method: PUT
+     HEADER_Content-Type: "application/json"
+     body: "{{ lookup('template', 'templates/cmsproxycache-app.json') }}"
+     body_format: json
+  register: result
+  until: result.status == 200
+  retries: 10
+  delay: 20
+  changed_when: false
+
+- name: wait for cms proxy cache service to be up and running
+  wait_for:
+     host: "{{cms_config_proxycache_host}}"
+     port: "{{cms_config_proxycache_serviceport}}"
+     delay: 20
+     timeout: 600
+     connect_timeout: 10
+
 # - name: debug url
 #   debug:
 #     msg: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/condor_cm"

@@ -15,6 +15,10 @@
         "containerPath": "/home/uwdir",
         "hostPath": "/tmp/uwdir",
         "mode": "RW"
+      },
+      { "containerPath": "/etc/condor/condormapfile",
+        "hostPath": "/tmp/condormapfile",
+        "mode": "RW"
       }
     ]
   },
@@ -37,7 +41,8 @@
     "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip}}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
     "HIGHPORT": "{{ high_port }}",
-    "LOWPORT": "{{ low_port }}"
+    "LOWPORT": "{{ low_port }}",
+    "PROXY_CACHE": "{{ proxycache_host }}:8080"
   },
   "args": [
     "schedd"

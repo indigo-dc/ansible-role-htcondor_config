@@ -11,7 +11,12 @@
       "privileged": true,
       "network": "BRIDGE"
     },
-    "volumes": []
+    "volumes": [
+      { "containerPath": "/etc/condor/condormapfile",
+        "hostPath": "/tmp/condormapfile",
+        "mode": "RW"
+      }
+    ]
   },
   "healthChecks": [
     {
@@ -30,7 +35,8 @@
     "CONDOR_HOST": "{{ condor_host }}",
     "SLOT_TYPE_1": "cpus={{htcondor_cpu_x_wn}}, mem={{htcondor_ram_x_wn}}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
-    "CCB_ADDRESS": "{{ ccb_address }}"
+    "CCB_ADDRESS": "{{ ccb_address }}",
+    "PROXY_CACHE": "{{ proxycache_host }}:8080"
   },
   "args": [
     "wn"

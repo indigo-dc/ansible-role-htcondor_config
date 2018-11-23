@@ -8,7 +8,12 @@
       "image": "{{htcondor_config_condor_image}}",
       "forcePullImage": true,
       "network": "HOST"
-    }
+    },      
+    "volumes": { 
+        "containerPath": "/etc/condor/condormapfile",
+        "hostPath": "/tmp/condormapfile",
+        "mode": "RW"
+      }
   },
   "healthChecks": [
     {
@@ -26,7 +31,8 @@
   "env": {
     "CONDOR_HOST": "{{ condor_host }}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
-    "LB_HOST_LIST": "{{ lb_peers }}"
+    "LB_HOST_LIST": "{{ lb_peers }}",
+    "PROXY_CACHE": "{{ proxycache_host }}:8080"
   },
   "args": [
     "master"
