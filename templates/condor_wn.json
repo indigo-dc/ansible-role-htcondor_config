@@ -11,12 +11,7 @@
       "privileged": true,
       "network": "BRIDGE"
     },
-    "volumes": [
-      { "containerPath": "/etc/condor/condormapfile",
-        "hostPath": "/tmp/condormapfile",
-        "mode": "RW"
-      }
-    ]
+    "volumes": []
   },
   "healthChecks": [
     {
