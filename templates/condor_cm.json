@@ -28,7 +28,7 @@
     "CONDOR_HOST": "{{ condor_host }}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
     "LB_HOST_LIST": "{{ lb_peers }}",
-    "PROXY_CACHE": "{{ proxycache_host }}:8080"
+    "PROXY_CACHE": "{{ proxycache_host }}:{{config_proxycache_serviceport}}"
   },
   "args": [
     "master"

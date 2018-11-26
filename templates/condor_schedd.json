@@ -26,7 +26,7 @@
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
     "HIGHPORT": "{{ high_port }}",
     "LOWPORT": "{{ low_port }}",
-    "PROXY_CACHE": "{{ proxycache_host }}:8080"
+    "PROXY_CACHE": "{{ proxycache_host }}:{{config_proxycache_serviceport}}"
   },
   "args": [
     "schedd"
