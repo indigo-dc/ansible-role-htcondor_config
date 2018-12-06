@@ -15,6 +15,11 @@
         "containerPath": "/home/uwdir",
         "hostPath": "/tmp/uwdir",
         "mode": "RW"
+      },
+      {
+        "containerPath": "/var/lib/condor/spool/",
+        "hostPath": "/spooldisk/",
+        "mode": "RW"
       }
     ]
   },
