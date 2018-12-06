@@ -1,8 +1,6 @@
 ---
 # marathon default variables
 
-marathon_username: admin
-marathon_password: passwd
 marathon_port: 8443
 marathon_protocol: https
 

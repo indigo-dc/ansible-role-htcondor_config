@@ -27,7 +27,7 @@
   "env": {
     "CONDOR_HOST": "{{ condor_host }}",
     "CONDOR_SCHEDD_SSH_PORT": "{{htcondor_schedd_ssh_port}}",
-    "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip}}",
+    "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip_pub}}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
     "HIGHPORT": "{{ high_port }}",
     "LOWPORT": "{{ low_port }}",
