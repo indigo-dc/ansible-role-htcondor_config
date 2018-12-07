@@ -8,7 +8,8 @@
       "image": "{{htcondor_config_condor_image}}",
       "forcePullImage": true,
       "network": "HOST"
-    }
+    },      
+    "volumes": []
   },
   "healthChecks": [
     {
@@ -24,15 +25,16 @@
     }
   ],
   "env": {
-    "CONDOR_HOST": "ZOOKEEPER",
+    "CONDOR_HOST": "{{ condor_host }}",
     "ZOOKEEPER_HOST_LIST": "{{ zookeeper_peers }}",
-    "LB_HOST_LIST": "{{ lb_peers }}"
+    "LB_HOST_LIST": "{{ lb_peers }}",
+    "PROXY_CACHE": "{{ proxycache_host }}:{{config_proxycache_serviceport}}"
   },
   "args": [
     "master"
   ],
   "constraints": [
     ["hostname", "UNIQUE"],
-    ["hostname", "UNLIKE", "{{htcondor_config_schedd_ip}}"]
+    ["hostname", "LIKE", "{{htcondor_config_ccb_ip}}"]
   ]
 }
