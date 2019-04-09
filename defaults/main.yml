@@ -4,6 +4,11 @@
 marathon_port: 8443
 marathon_protocol: https
 
+iam_endpoint: https://dodas-iam.cloud.cnaf.infn.it/
+iam_group: ALL
+iam_client_id: DUMMY
+iam_client_secret: DUMMY
+
 # htcondor default variables
 htcondor_schedd_ssh_port: 31042
 htcondor_config_condor_image: "dodasts/htcondor"

@@ -25,6 +25,10 @@
   },
   "healthChecks": [],
   "env": {
+    "IAM_ENDPOINT": "{{ iam_endpoint }}",
+    "IAM_GROUP": "{{ iam_group }}",
+    "CLIENT_ID": "{{ iam_client_id }}",
+    "CLIENT_SECRET": "{{ iam_client_secret}}",
     "CONDOR_HOST": "{{ condor_host }}",
     "CONDOR_SCHEDD_SSH_PORT": "{{htcondor_schedd_ssh_port}}",
     "NETWORK_INTERFACE": "{{htcondor_config_schedd_ip_pub}}",
