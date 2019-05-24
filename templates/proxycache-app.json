@@ -1,5 +1,5 @@
 {
-    "id": "cmsproxycache",
+    "id": "proxycache",
     "container": {
       "type": "DOCKER",
       "docker": {
