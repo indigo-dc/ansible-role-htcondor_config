@@ -43,8 +43,8 @@
       }
     ],
     "constraints": [
-      ["hostname", "UNLIKE", "{{htcondor_config_schedd_ip}}"],
-      ["hostname", "UNLIKE", "{{htcondor_config_ccb_ip}}"]
+      ["ccb", "UNLIKE", "True"],
+      ["schedd", "UNLIKE", "True"]
     ],
     "instances": 1,
     "cpus": 1.00,

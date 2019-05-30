@@ -38,6 +38,6 @@
   ],
   "constraints": [
     ["hostname", "UNIQUE"],
-    ["hostname", "LIKE", "{{htcondor_config_schedd_ip_pub}}"]
+    ["schedd", "LIKE", "True"]
   ]
 }
