@@ -1,7 +1,7 @@
 {
   "id": "condorcm",
-  "cpus": 0.95,
-  "mem": 998.2,
+  "cpus": {{docker_cpu_x_cm}},
+  "mem": {{docker_ram_x_cm}},
   "container": {
     "type": "DOCKER",
     "docker": {

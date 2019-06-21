@@ -1,7 +1,7 @@
 {
   "id": "condorschedd",
-  "cpus": 0.9,
-  "mem": 999.5,
+  "cpus": {{docker_cpu_x_schedd}},
+  "mem": {{docker_ram_x_schedd}},
   "container": {
     "type": "DOCKER",
     "docker": {
