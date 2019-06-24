@@ -4,9 +4,11 @@
 marathon_port: 8443
 marathon_protocol: https
 
-config_iam_group: ALL
 config_iam_client_id: DUMMY
 config_iam_client_secret: DUMMY
+iam_map_client_id: DUMMY
+iam_map_client_secret: DUMMY
+iam_map_group: ALL
 
 # htcondor default variables
 htcondor_schedd_ssh_port: 31042

@@ -26,7 +26,6 @@
   "healthChecks": [],
   "env": {
     "IAM_ENDPOINT": "{{ proxy_iam_endpoint }}",
-    "IAM_GROUP": "{{ config_iam_group }}",
     "CLIENT_ID": "{{ config_iam_client_id }}",
     "CLIENT_SECRET": "{{ config_iam_client_secret}}",
     "CONDOR_HOST": "{{ condor_host }}",
