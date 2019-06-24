@@ -42,6 +42,6 @@
   ],
   "constraints": [
     ["hostname", "UNIQUE"],
-    ["hostname", "LIKE", "{{htcondor_config_schedd_ip}}"]
+    ["schedd", "LIKE", "True"]
   ]
 }

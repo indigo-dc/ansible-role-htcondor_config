@@ -10,13 +10,13 @@
 - name: start proxy cache
   run_once: true
   uri:
-     url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/cmsproxycache"
+     url: "{{marathon_protocol}}://marathon.service.consul:{{marathon_port}}/v2/apps/proxycache"
      user: "{{marathon_username}}"
      password: "{{marathon_password}}"
      validate_certs: "no"
      method: PUT
      HEADER_Content-Type: "application/json"
-     body: "{{ lookup('template', 'templates/cmsproxycache-app.json') }}"
+     body: "{{ lookup('template', 'templates/proxycache-app.json') }}"
      body_format: json
   register: result
   until: result.status == 200
@@ -24,7 +24,7 @@
   delay: 20
   changed_when: false
 
-- name: wait for cms proxy cache service to be up and running
+- name: wait for proxy cache service to be up and running
   wait_for:
      host: "{{config_proxycache_host}}"
      port: "{{config_proxycache_serviceport}}"

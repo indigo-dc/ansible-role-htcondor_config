@@ -35,6 +35,6 @@
   ],
   "constraints": [
     ["hostname", "UNIQUE"],
-    ["hostname", "LIKE", "{{htcondor_config_ccb_ip}}"]
+    ["ccb", "LIKE", "True"]
   ]
 }
