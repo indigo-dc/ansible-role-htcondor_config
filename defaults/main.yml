@@ -4,6 +4,9 @@
 marathon_port: 8443
 marathon_protocol: https
 
+hostname_ccb: vnode-1.localdomain
+hostname_schedd: vnode-2.localdomain
+
 config_iam_client_id: DUMMY
 config_iam_client_secret: DUMMY
 iam_map_client_id: DUMMY

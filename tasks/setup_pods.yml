@@ -1,0 +1,9 @@
+---
+
+- name: "Compile config template for condor helm values"
+  template:
+    src: templates/k8s/values.yml
+    dest: /etc/condor_values.yml
+
+- name: install condor with helm
+  shell: "git clone https://github.com/DODAS-TS/helm-chart_htcondor.git && helm install -n condor_cluster -f  /etc/condor_values.yml helm-chart_htcondor"

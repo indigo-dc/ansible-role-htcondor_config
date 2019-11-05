@@ -2,3 +2,25 @@
 
 - include: start-htcondor-apps.yml
   when: (config_mode is defined) and (config_mode == "master")
+
+- name: Wait for nodes to be ready
+  shell: "/usr/bin/kubectl get nodes"
+  register: nodes
+  until:      
+    - '"Ready"  in nodes.stdout'      
+  retries: 6
+  delay: 70
+  when: (config_mode is defined) and (config_mode == "k8s")
+
+- name: Setup node ccb label
+  shell: "kubectl label nodes {{ hostname_ccb }} condor=ccb"
+  when: (config_mode is defined) and (config_mode == "k8s")
+
+- name: Setup node schedd label
+  shell: "kubectl label nodes {{ hostname_schedd }} condor=schedd"
+  when: (config_mode is defined) and (config_mode == "k8s")
+
+- include: setup_pods.yml
+  when: (config_mode is defined) and (config_mode == "k8s")
+
+

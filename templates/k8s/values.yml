@@ -1,0 +1,43 @@
+# Default values for htcondor.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+CONDOR_HOST: "{{ condor_host }}"
+CCB_HOST: "{{ condor_host }}"
+PROXY_CACHE: "{{ proxycache_host }}"
+PROXY_CACHE_Port: {{config_proxycache_serviceport}}
+NETWORK_INTERFACE: "{{htcondor_config_schedd_ip_pub}}"
+
+SLOT_TYPE_1: cpus=1, mem=2000
+
+LOWPORT: {{ low_port }}
+HIGHPORT: {{ high_port }}
+
+spool_size: 5Gi
+spool_size_claim: 4Gi
+spool_host_path: /tmp/
+
+condor_image: "{{htcondor_config_condor_image}}"
+
+nfs:
+  enabled: false
+  size: 1Mi
+  server: DUMMY
+  path: "/"
+
+cvmfs:
+  enabled: false
+
+IAM_TOKEN: "{{ config_iam_token }}"
+IAM_CLIENT_ID: "{{ config_iam_client_id }}"
+IAM_CLIENT_SECRET: "{{ config_iam_client_secret}}"
+IAM_SCIM_CLIENT_ID:   "{{ iam_map_client_id }}"
+IAM_SCIM_SECRET:  "{{ iam_map_client_id }}"
+IAM_MAP_GROUP: "{{ iam_map_group }}"
+PROXY_AUDIENCE: "{{ proxy_audience }}"
+PROXY_TTS: "{{ proxy_tts }}"
+PROXY_IAM_ENDPOINT: "{{ proxy_iam_endpoint }}"
+PROXY_CREDENTIAL_ENDPOINT: "{{ proxy_credential_endpoint }}"
+
+tts_image: "{{ config_proxycache_image }}"
+
