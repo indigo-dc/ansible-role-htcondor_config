@@ -12,13 +12,13 @@
   delay: 70
   when: (config_mode is defined) and (config_mode == "k8s")
 
-- name: Setup node ccb label
-  shell: "kubectl label --overwrite nodes {{ hostname_ccb }} condor=ccb"
-  when: (config_mode is defined) and (config_mode == "k8s")
+# - name: Setup node ccb label
+#   shell: "kubectl label --overwrite nodes {{ hostname_ccb }} condor=ccb"
+#   when: (config_mode is defined) and (config_mode == "k8s")
 
-- name: Setup node schedd label
-  shell: "kubectl label --overwrite nodes {{ hostname_schedd }} condor=schedd"
-  when: (config_mode is defined) and (config_mode == "k8s")
+# - name: Setup node schedd label
+#   shell: "kubectl label --overwrite nodes {{ hostname_schedd }} condor=schedd"
+#   when: (config_mode is defined) and (config_mode == "k8s")
 
 - include: setup_pods.yml
   when: (config_mode is defined) and (config_mode == "k8s")
