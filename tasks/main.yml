@@ -24,3 +24,9 @@
   when: (config_mode is defined) and (config_mode == "k8s")
 
 
+- name: sleep for 300 seconds and continue with play
+  wait_for:
+    timeout: 300
+  delegate_to: localhost
+  notify: 
+  - restart kubelet
