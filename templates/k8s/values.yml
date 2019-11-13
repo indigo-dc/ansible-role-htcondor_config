@@ -27,6 +27,12 @@ nfs:
 
 cvmfs:
   enabled: false
+  image: cloudpg/cvmfs
+  defaultLocalConfig: |-
+    property.1=value-1
+    property.2=value-2
+    property.3=value-3
+
 
 IAM_TOKEN: "{{ config_iam_token }}"
 IAM_CLIENT_ID: "{{ config_iam_client_id }}"
