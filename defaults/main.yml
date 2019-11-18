@@ -9,9 +9,9 @@ hostname_schedd: vnode-2.localdomain
 
 config_iam_client_id: DUMMY
 config_iam_client_secret: DUMMY
-iam_map_client_id: DUMMY
-iam_map_client_secret: DUMMY
-iam_map_group: ALL
+config_iam_map_client_id: DUMMY
+config_iam_map_client_secret: DUMMY
+config_iam_map_group: ALL
 
 # htcondor default variables
 htcondor_schedd_ssh_port: 31042
