@@ -7,3 +7,4 @@
 
 - name: install condor with helm
   shell: "git clone https://github.com/DODAS-TS/helm-chart_htcondor.git && helm install -n condor -f  /etc/condor_values.yml helm-chart_htcondor"
+  when: (prepare_only is undefined) or (not prepare_only)
